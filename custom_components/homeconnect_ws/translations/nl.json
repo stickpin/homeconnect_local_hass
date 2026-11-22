@@ -1526,7 +1526,14 @@
           "consumerproducts_coffeemaker_program_cleaningmodes_replacewaterfilter": "Vervang Waterfilter",
           "consumerproducts_coffeemaker_program_cleaningmodes_rinsemilksystem": "Spoel Melksysteem",
           "consumerproducts_coffeemaker_program_cleaningmodes_rinsewaterfilter": "Spoel Waterfilter",
-          "consumerproducts_coffeemaker_program_cleaningmodes_specialrinsing": "Speciale Spoeling"
+          "consumerproducts_coffeemaker_program_cleaningmodes_specialrinsing": "Speciale Spoeling",
+          "Dishcare_Dishwasher_Program_Intensiv70": "Intensief 70",
+          "Dishcare_Dishwasher_Program_Auto2": "Auto 45-65",
+          "Dishcare_Dishwasher_Program_Eco50": "Eco 50",
+          "Dishcare_Dishwasher_Program_Quick45": "Snel 45",
+          "Dishcare_Dishwasher_Program_PreRinse": "Spoelen",
+          "Dishcare_Dishwasher_Program_Quick65": "Snel 65",
+          "Dishcare_Dishwasher_Program_MachineCare": "Machinereiniging"
         }
       },
       "select_sensitivity_turbidity": {

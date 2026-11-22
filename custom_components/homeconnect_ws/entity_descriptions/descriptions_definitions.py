@@ -15,7 +15,6 @@ from homeassistant.components.sensor import SensorEntityDescription
 from homeassistant.components.switch import SwitchEntityDescription
 from homeassistant.helpers.entity import EntityDescription
 from homeconnect_websocket import HomeAppliance
-from homeconnect_websocket.entities import Access
 
 if TYPE_CHECKING:
     from homeassistant.helpers.typing import StateType
@@ -35,7 +34,6 @@ class HCEntityDescription(EntityDescription, frozen_or_thawed=True):
 
     entity: str | None = None
     entities: list[str] | None = None
-    available_access: tuple[Access] | None = None
     extra_attributes: list[ExtraAttributeDict] = None
 
 
@@ -44,7 +42,6 @@ class HCSelectEntityDescription(
 ):
     """Description for Select Entity."""
 
-    available_access: tuple[Access] = (Access.READ_WRITE, Access.WRITE_ONLY)
     has_state_translation: bool = False
     mapping: dict[str, str] = None
 
@@ -55,7 +52,6 @@ class HCSwitchEntityDescription(
     """Description for Switch Entity."""
 
     value_mapping: tuple[str, str] | None = None
-    available_access: tuple[Access] = (Access.READ_WRITE, Access.WRITE_ONLY)
 
 
 class HCSensorEntityDescription(
@@ -63,7 +59,6 @@ class HCSensorEntityDescription(
 ):
     """Description for Sensor Entity."""
 
-    available_access: tuple[Access] = (Access.READ, Access.READ_WRITE)
     has_state_translation: bool = False
     mapping: dict[str, str] = None
 
@@ -77,7 +72,6 @@ class HCBinarySensorEntityDescription(
 
     value_on: set[str] | None = None
     value_off: set[str] | None = None
-    available_access: tuple[Access] = (Access.READ, Access.READ_WRITE)
 
 
 class HCButtonEntityDescription(
@@ -85,7 +79,6 @@ class HCButtonEntityDescription(
 ):
     """Description for Button Entity."""
 
-    available_access: tuple[Access] = (Access.READ_WRITE, Access.WRITE_ONLY)
 
 
 class HCNumberEntityDescription(
@@ -93,13 +86,11 @@ class HCNumberEntityDescription(
 ):
     """Description for Number Entity."""
 
-    available_access: tuple[Access] = (Access.READ_WRITE, Access.WRITE_ONLY)
 
 
 class HCLightEntityDescription(HCEntityDescription, LightEntityDescription, frozen_or_thawed=True):
     """Description for Number Entity."""
 
-    available_access: tuple[Access] = (Access.READ_WRITE, Access.WRITE_ONLY)
     brightness_entity: str | None = None
     color_temperature_entity: str | None = None
     color_entity: str | None = None
@@ -109,7 +100,6 @@ class HCLightEntityDescription(HCEntityDescription, LightEntityDescription, froz
 class HCFanEntityDescription(HCEntityDescription, FanEntityDescription, frozen_or_thawed=True):
     """Description for Fan Entity."""
 
-    available_access: tuple[Access] = (Access.READ_WRITE,)
 
 
 class EntityDescriptions(TypedDict):

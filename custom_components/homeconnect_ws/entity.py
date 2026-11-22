@@ -8,8 +8,6 @@ from typing import TYPE_CHECKING
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .helpers import entity_is_available
-
 if TYPE_CHECKING:
     from homeassistant.helpers.device_registry import DeviceInfo
     from homeconnect_websocket.entities import Entity as HcEntity
@@ -70,13 +68,12 @@ class HCEntity(CoordinatorEntity, Entity):
 
     @property
     def available(self) -> bool:
-        # FIX: session.connected fallback prevents unavailable during reconnects
-        # and initial load before coordinator callback. 300s timeout still applies.
-        conn = (
+        # Match the known-working behavior: connection state determines HA
+        # availability for this appliance.
+        return (
             self._runtime_data.coordinator.connected
             or self._runtime_data.appliance.session.connected
         )
-        return conn and entity_is_available(self._entity, self.entity_description.available_access)
 
     @property
     def extra_state_attributes(self) -> dict:

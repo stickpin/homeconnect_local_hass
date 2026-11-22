@@ -69,9 +69,10 @@ class HomeConnectCoordinator(DataUpdateCoordinator):
         await self.appliance.close()
 
     async def _async_setup(self) -> None:
-        self.config_entry.async_create_background_task(
-            self.hass, self._connect(), f"homeconnect_ws_{self.name}"
-        )
+        # Wait for the appliance handshake before the first refresh completes.
+        # Otherwise Home Assistant creates entities while the session is still
+        # disconnected, leaving them unavailable until a later state update.
+        await self._connect()
 
     async def _connect(self) -> None:
         self.logger.debug("Connecting to %s", self.appliance.info.get("vib"))

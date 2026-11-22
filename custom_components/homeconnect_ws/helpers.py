@@ -18,8 +18,6 @@ if TYPE_CHECKING:
 
     from homeassistant.core import HomeAssistant, ServiceCall
     from homeconnect_websocket import HomeAppliance
-    from homeconnect_websocket.entities import Access
-    from homeconnect_websocket.entities import Entity as HcEntity
 
     from . import HCConfigEntry, HCData
     from .entity import HCEntity
@@ -95,17 +93,6 @@ async def get_config_entry_from_call(
         if config_entry.domain == DOMAIN:
             return config_entry
     raise ServiceValidationError(translation_domain=DOMAIN, translation_key="not_appliance")
-
-
-def entity_is_available(entity: HcEntity, available_access: tuple[Access]) -> bool:
-    """Check is HC entity is available."""
-    available = True
-    if hasattr(entity, "available"):
-        available &= entity.available
-
-    if hasattr(entity, "access"):
-        available &= entity.access in available_access
-    return available
 
 
 def error_decorator[T](func: Callable[..., Coroutine[T]]) -> Callable[..., Coroutine[T]]:
